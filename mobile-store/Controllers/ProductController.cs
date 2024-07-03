@@ -10,7 +10,7 @@ namespace mobile_store.Controllers
         [HttpGet]
         public IActionResult ReturnHello()
         {
-            return Ok("Hello");
+            return Ok("Hello-2");
         }
     }
 }
