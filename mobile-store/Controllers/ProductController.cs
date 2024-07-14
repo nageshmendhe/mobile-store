@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace mobile_store.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductController : BaseAPIController
     {
         [HttpGet]
         public IActionResult ReturnHello()

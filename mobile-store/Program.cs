@@ -1,4 +1,11 @@
 
+using Microsoft.EntityFrameworkCore;
+using mobile_store.Models;
+using mobile_store.Repository;
+using mobile_store.Repository.IRepository;
+using mobile_store.Services;
+using mobile_store.Services.IServices;
+
 namespace mobile_store
 {
     public class Program
@@ -7,7 +14,12 @@ namespace mobile_store
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            builder.Services.AddSingleton<ISaleService, SaleService>();
+            builder.Services.AddSingleton(typeof(IRepository<>), typeof(Repository<>));
+            builder.Services.AddDbContext<MobilePhoneStoreContext>(opt =>
+            {
+                opt.UseSqlServer("Data Source=DESKTOP-4ODO15H;Initial Catalog=MobilePhoneStore;Integrated Security=True;Trust Server Certificate=True;");
+            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
