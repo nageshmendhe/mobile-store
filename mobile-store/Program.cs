@@ -14,11 +14,12 @@ namespace mobile_store
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddSingleton<ISaleService, SaleService>();
-            builder.Services.AddSingleton(typeof(IRepository<>), typeof(Repository<>));
+            builder.Services.AddScoped<IRepository<Sale>, Repository<Sale>>();
+            builder.Services.AddScoped<IRepository<SalesRecord>, Repository<SalesRecord>>();
+            builder.Services.AddScoped<ISaleService, SaleService>();
             builder.Services.AddDbContext<MobilePhoneStoreContext>(opt =>
             {
-                opt.UseSqlServer("Data Source=DESKTOP-4ODO15H;Initial Catalog=MobilePhoneStore;Integrated Security=True;Trust Server Certificate=True;");
+                opt.UseSqlServer(builder.Configuration.GetConnectionString("Data Source=DESKTOP-4ODO15H;Initial Catalog=MobilePhoneStore;Integrated Security=True;Trust Server Certificate=True;"));
             });
 
             builder.Services.AddControllers();

@@ -5,7 +5,7 @@ namespace mobile_store.Models;
 
 public partial class User
 {
-    public int UserId { get; set; }
+    public int Id { get; set; }
 
     public string Name { get; set; } = null!;
 
@@ -22,8 +22,6 @@ public partial class User
     public string? Address { get; set; }
 
     public int? UserRoleId { get; set; }
-
-    public virtual ICollection<SalesRecord> SalesRecords { get; set; } = new List<SalesRecord>();
 
     public virtual ICollection<Volet> Volets { get; set; } = new List<Volet>();
 }

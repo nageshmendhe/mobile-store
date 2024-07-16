@@ -5,9 +5,7 @@ namespace mobile_store.Models;
 
 public partial class Product
 {
-    public int ProductId { get; set; }
-
-    public int? SalesId { get; set; }
+    public int Id { get; set; }
 
     public string? ProductType { get; set; }
 
@@ -24,4 +22,6 @@ public partial class Product
     public DateOnly? ProductModification { get; set; }
 
     public virtual Brand? Brand { get; set; }
+
+    public virtual ICollection<ProductSale> ProductSales { get; set; } = new List<ProductSale>();
 }

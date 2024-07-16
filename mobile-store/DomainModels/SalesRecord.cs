@@ -19,5 +19,11 @@ namespace mobile_store.DomainModels
         public double? DiscountedAmount { get; set; }
 
         public int? TotalSold { get; set; }
+        public DateOnly? CreatedBy { get; internal set; }
+        public int? ProductSaleId { get; internal set; }
+        public DateOnly? UpdatedBy { get; internal set; }
+        public DateOnly? CreatedOn { get; internal set; }
+        public DateOnly? UpdateOn { get; internal set; }
+        public DateOnly? RecordsDate { get; internal set; }
     }
 }
