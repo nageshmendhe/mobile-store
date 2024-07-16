@@ -4,9 +4,8 @@
     {
         public int? Id { get; set; }
 
-        public int? SaleId { get; set; }
 
-        public DateOnly? Date { get; set; }
+        public DateOnly? SaleDate { get; set; }
 
         public int? Discount { get; set; }
 

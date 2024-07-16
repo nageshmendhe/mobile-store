@@ -39,22 +39,16 @@ public partial class MobilePhoneStoreContext : DbContext
     {
         modelBuilder.Entity<Brand>(entity =>
         {
-            entity.HasKey(e => e.BrandId).HasName("PK__Brand__DAD4F05E075F459D");
+            entity.HasKey(e => e.Id).HasName("PK__Brands__3214EC077063C091");
 
-            entity.ToTable("Brand");
-
-            entity.Property(e => e.Name)
+            entity.Property(e => e.BrandName)
                 .HasMaxLength(250)
                 .IsUnicode(false);
         });
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.ProductId).HasName("PK__Product__B40CC6CDE30849A1");
-
-            entity.ToTable("Product");
-
-            entity.HasIndex(e => e.BrandId, "BrandId").IsUnique();
+            entity.HasKey(e => e.Id).HasName("PK__Products__3214EC07701F9D89");
 
             entity.Property(e => e.ProductDetails)
                 .HasMaxLength(250)
@@ -67,44 +61,46 @@ public partial class MobilePhoneStoreContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("Product_Type");
 
-            entity.HasOne(d => d.Brand).WithOne(p => p.Product)
-                .HasForeignKey<Product>(d => d.BrandId)
-                .HasConstraintName("FK_Product_Brand");
+            entity.HasOne(d => d.Brand).WithMany(p => p.Products)
+                .HasForeignKey(d => d.BrandId)
+                .HasConstraintName("FK__Products__BrandI__403A8C7D");
         });
 
         modelBuilder.Entity<ProductSale>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("ProductSale");
+            entity.HasKey(e => e.Id).HasName("PK__ProductS__3214EC073ABDFF67");
 
-            entity.HasOne(d => d.Product).WithMany()
+            entity.ToTable("ProductSale");
+
+            entity.HasOne(d => d.Product).WithMany(p => p.ProductSales)
                 .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__ProductSa__Produ__48CFD27E");
-
-            entity.HasOne(d => d.Sale).WithMany()
-                .HasForeignKey(d => d.SaleId)
-                .HasConstraintName("FK__ProductSa__SaleI__47DBAE45");
+                .HasConstraintName("FK__ProductSa__Produ__47DBAE45");
         });
 
         modelBuilder.Entity<Sale>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("Sale");
+            entity.HasKey(e => e.Id).HasName("PK__Sale__3214EC07CB70765D");
 
-            entity.HasOne(d => d.SaleNavigation).WithMany()
-                .HasForeignKey(d => d.SaleId)
-                .HasConstraintName("FK__Sale__SaleId__45F365D3");
+            entity.ToTable("Sale");
         });
 
         modelBuilder.Entity<SalesRecord>(entity =>
         {
-            entity.HasKey(e => e.SaleId).HasName("PK__Sales_Re__1EE3C3FF26132FF6");
+            entity
+                .HasNoKey()
+                .ToTable("Sales_Records");
 
-            entity.ToTable("Sales_Records");
+            entity.Property(e => e.CreatedBy).HasColumnName("createdBy");
+            entity.Property(e => e.CreatedOn).HasColumnName("createdOn");
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
+            entity.Property(e => e.UpdateOn).HasColumnName("updateOn");
+            entity.Property(e => e.UpdatedBy).HasColumnName("updatedBy");
 
-            entity.HasOne(d => d.User).WithMany(p => p.SalesRecords)
+            entity.HasOne(d => d.Sale).WithMany()
+                .HasForeignKey(d => d.SaleId)
+                .HasConstraintName("FK__Sales_Rec__SaleI__44FF419A");
+
+            entity.HasOne(d => d.User).WithMany()
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("FK__Sales_Rec__UserI__440B1D61");
         });
@@ -113,6 +109,7 @@ public partial class MobilePhoneStoreContext : DbContext
         {
             entity.HasNoKey();
 
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
             entity.Property(e => e.TransactionType)
                 .HasMaxLength(250)
                 .IsUnicode(false);
@@ -120,7 +117,7 @@ public partial class MobilePhoneStoreContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4CAABA6E74");
+            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC070AC5B6DA");
 
             entity.Property(e => e.Address)
                 .HasMaxLength(250)
@@ -141,7 +138,7 @@ public partial class MobilePhoneStoreContext : DbContext
 
         modelBuilder.Entity<Volet>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Volet__3214EC07CAB59622");
+            entity.HasKey(e => e.Id).HasName("PK__Volet__3214EC0767475422");
 
             entity.ToTable("Volet");
 
@@ -154,7 +151,7 @@ public partial class MobilePhoneStoreContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.Volets)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Volet__UserId__3F466844");
+                .HasConstraintName("FK__Volet__UserId__398D8EEE");
         });
 
         OnModelCreatingPartial(modelBuilder);

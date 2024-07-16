@@ -5,11 +5,13 @@ namespace mobile_store.Models;
 
 public partial class Brand
 {
-    public int? Id { get; set; }
+    public int Id { get; set; }
 
-    public string? Name { get; set; }
+    public string? BrandName { get; set; }
 
-    public int BrandId { get; set; }
+    public DateOnly? CreationDate { get; set; }
 
-    public virtual Product? Product { get; set; }
+    public DateOnly? ModificationDate { get; set; }
+
+    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }
