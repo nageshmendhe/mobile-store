@@ -3,13 +3,10 @@ using System.Collections.Generic;
 
 namespace mobile_store.Models;
 
-public partial class SalesRecord : BaseEntityModel
+public partial class Order : BaseEntityModel
 {
-    public int Id { get; set; }
 
     public int? UserId { get; set; }
-
-    public int? ProductSaleId { get; set; }
 
     public int? SaleId { get; set; }
 
@@ -33,7 +30,7 @@ public partial class SalesRecord : BaseEntityModel
 
     public int? TotalSold { get; set; }
 
-    public virtual Sale? Sale { get; set; }
+    public virtual Deals? Sale { get; set; }
 
     public virtual User? User { get; set; }
 }

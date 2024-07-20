@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System.ComponentModel.DataAnnotations;
 
 namespace mobile_store.Models;
 
-public partial class Brand
+  public  class Brand : BaseEntityModel
 {
-    public int Id { get; set; }
+ 
+    [Required]
 
     public string? BrandName { get; set; }
 
@@ -13,5 +14,4 @@ public partial class Brand
 
     public DateOnly? ModificationDate { get; set; }
 
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

@@ -10,9 +10,9 @@ namespace mobile_store.Services
 {
     public class SaleService : ISaleService
     {
-        private readonly IRepository<Models.Sale> _saleRepository;
-        private readonly IRepository<Models.SalesRecord> _salesRecordRepository;
-        public SaleService(IRepository<Models.Sale> saleRepository, IRepository<Models.SalesRecord> salesRecordRepository)
+        private readonly IRepository<Models.Deals> _saleRepository;
+        private readonly IRepository<Models.Order> _salesRecordRepository;
+        public SaleService(IRepository<Models.Deals> saleRepository, IRepository<Models.Order> salesRecordRepository)
         {
             _saleRepository = saleRepository;
             _salesRecordRepository = salesRecordRepository;
@@ -29,7 +29,6 @@ namespace mobile_store.Services
                 {
                     Id = salesRecord.Id,
                     UserId = salesRecord.UserId,
-                    ProductSaleId = salesRecord.ProductSaleId,
                     CreatedBy = salesRecord.CreatedBy,
                     UpdatedBy = salesRecord.UpdatedBy,
                     CreatedOn = salesRecord.CreatedOn,

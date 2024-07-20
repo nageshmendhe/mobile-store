@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace mobile_store.Models;
 
-public partial class Sale : BaseEntityModel
+public partial class Deals : BaseEntityModel
 {
-    public int? Id { get; set; }
 
     public DateOnly? SaleDate { get; set; }
 
