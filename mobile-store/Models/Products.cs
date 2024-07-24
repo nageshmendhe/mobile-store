@@ -5,7 +5,6 @@ namespace mobile_store.Models;
 
 public partial class Products : BaseEntityModel
 {
-    public int? Id {  get; set; }
 
     public string? Product_Type { get; set; }
 
@@ -20,7 +19,5 @@ public partial class Products : BaseEntityModel
     public DateOnly? ProductCreation { get; set; }
 
     public DateOnly? ProductModification { get; set; }
-
-
-
+   
 }

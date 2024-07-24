@@ -5,8 +5,9 @@ namespace mobile_store.Models;
 
 public partial class Deals : BaseEntityModel
 {
+  
 
-    public DateOnly? SaleDate { get; set; }
+    public DateOnly? DealsDate { get; set; }
 
     public int? Discount { get; set; }
 
@@ -15,4 +16,7 @@ public partial class Deals : BaseEntityModel
     public double? ShowPrice { get; set; }
 
     public double? DiscountedAmount { get; set; }
+
+    public string? DealsName { get; set; }
+   
 }

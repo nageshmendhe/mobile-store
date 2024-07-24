@@ -6,7 +6,10 @@ using mobile_store.Repository.IRepository;
 using mobile_store.Services;
 using mobile_store.Services.BrandService;
 using mobile_store.Services.BrandService.IBrandService;
-using mobile_store.Services.IServices;
+using mobile_store.Services.DealsService;
+using mobile_store.Services.DealsService.IDealsService;
+using mobile_store.Services.OrderService;
+using mobile_store.Services.OrderService.IOrderService;
 using mobile_store.Services.ProductService;
 using mobile_store.Services.ProductsService.IProductsService;
 
@@ -19,10 +22,11 @@ namespace mobile_store
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddScoped<ISaleService, SaleService>();
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddScoped<IBrandService, BrandService>();
             builder.Services.AddScoped<IProductsService, ProductsService>();
+            builder.Services.AddScoped<IDealsService, DealsService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddDbContext<MobilePhoneStoreContext>(opt =>
             {
                 opt.UseSqlServer(builder.Configuration.GetConnectionString("Data Source=DESKTOP-4ODO15H;Initial Catalog=MobilePhoneStore;Integrated Security=True;Trust Server Certificate=True;"));
