@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using mobile_store.Models;
 using mobile_store.Repository.IRepository;
 
@@ -25,8 +26,15 @@ namespace mobile_store.Repository
 
         public void Delete(TEntity entity)
         {
-            DbSet?.Remove(entity);
-            Save();
+            try
+            {
+                DbSet?.Remove(entity);
+                Save();
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"{ex.Message} {ex.StackTrace}");
+            }
         }
 
         public IEnumerable<TEntity> GetAll()

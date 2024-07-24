@@ -6,11 +6,13 @@ namespace mobile_store.Services.BrandService.IBrandService
     {
         public  Task CreateBrand(Brand brand);
 
+        public IEnumerable<Brand> GetAllBrands();
+
         public bool DeleteBrand(string brandName);
 
         public bool UpdateBrand(Brand brand);
 
-        public IEnumerable<Brand> GetAllBrands();
+        
 
         public Brand GetBrandById(int id);
     }

@@ -1,12 +1,11 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 
 namespace mobile_store.Models;
 
-  public  class Brand : BaseEntityModel
+public partial class Brand : BaseEntityModel
 {
- 
-    [Required]
+   
 
     public string? BrandName { get; set; }
 

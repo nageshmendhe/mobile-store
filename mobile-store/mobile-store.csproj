@@ -24,7 +24,9 @@
 
   <ItemGroup>
     <Folder Include="CommonHelper\" />
+    <Folder Include="DomainModels\" />
     <Folder Include="DTOs\RequestDto\" />
+    <Folder Include="DTOs\ResponseDto\" />
   </ItemGroup>
 
 </Project>
