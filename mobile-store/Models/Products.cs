@@ -14,7 +14,7 @@ public partial class Products : BaseEntityModel
 
     public string? ProductDetails { get; set; }
 
-    public double? ProductPricing { get; set; }
+    public int? ProductPricing { get; set; }
 
     public DateOnly? ProductCreation { get; set; }
 

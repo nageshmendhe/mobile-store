@@ -10,5 +10,7 @@ namespace mobile_store.Repository.IRepository
         TEntity GetById(int id);
         void Update(TEntity entity);
         IQueryable<TEntity> Table { get; }
+
+        Task AddAll(List<TEntity> list);
     }
 }

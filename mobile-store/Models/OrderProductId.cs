@@ -2,7 +2,7 @@
 {
     public class OrderProductId : BaseEntityModel
     { 
-        public DateOnly? OrderId { get; set; }
+        public int? OrderId { get; set; }
 
         public int? ProductId { get; set; }
     }
