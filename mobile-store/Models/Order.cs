@@ -28,8 +28,10 @@ public partial class Order : BaseEntityModel
 
     public int? Discount { get; set; }
 
-    public double? DiscountedAmount { get; set; }
+    public int? DiscountedAmount { get; set; }
 
     public int? TotalSold { get; set; }
+
+    public int? TotalAmount { get; set; }
 
 }

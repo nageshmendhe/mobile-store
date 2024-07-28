@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace mobile_store.Models;
 
-public  class Transaction : BaseEntityModel
+public  class Transactions : BaseEntityModel
 {
     public string? TransactionType { get; set; }
 

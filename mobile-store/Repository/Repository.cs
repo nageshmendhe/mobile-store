@@ -24,6 +24,11 @@ namespace mobile_store.Repository
             Save();
         }
 
+        public async Task AddAll(List<TEntity> list)
+        {
+            await DbSet.AddRangeAsync(list);
+        }
+
         public void Delete(TEntity entity)
         {
             try

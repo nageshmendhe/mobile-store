@@ -23,7 +23,7 @@ public partial class MobilePhoneStoreContext : DbContext
 
     public virtual DbSet<Products> Product { get; set; }
 
-    public virtual DbSet<Transaction> Transaction { get; set; }
+    public virtual DbSet<Transactions> Transactions { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
