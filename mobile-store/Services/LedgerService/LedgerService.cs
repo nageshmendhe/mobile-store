@@ -1,4 +1,5 @@
 ﻿using mobile_store.DTOs.RequestDto;
+using mobile_store.DTOs.ResponseDto;
 using mobile_store.Models;
 using mobile_store.Repository.IRepository;
 
@@ -44,7 +45,7 @@ namespace mobile_store.Services.LedgerService
             int totalPrice = 0;
             foreach (var product in productList)
             {
-                int discountedPrice = (int)product.ProductPricing * ((100 - (int) discountPercent) / 100);
+                int discountedPrice = (int)product.ProductPricing * ((100 - (int)discountPercent) / 100);
                 totalDiscountedOrderPrice = totalDiscountedOrderPrice + discountedPrice;
                 totalPrice = totalPrice + (int)product.ProductPricing;
             }
@@ -77,5 +78,55 @@ namespace mobile_store.Services.LedgerService
 
             return "Order Created";
         }
+
+        public async Task<List<OrderResponseDto>> GetAllOrders()
+        {
+            // Retrieve all orders
+            var orders = _orderRepo.Table.ToList();
+
+            var orderResponseList = new List<OrderResponseDto>();
+
+            foreach (var order in orders)
+            {
+                // Retrieve product IDs for the order
+                var orderProductIds = _orderProductIdRepo.Table.Where(op => op.OrderId == order.Id).Select(op => op.ProductId).ToList();
+
+                // Retrieve product details for the product IDs
+                var products = _productRepo.Table.Where(p => orderProductIds.Contains(p.Id)).ToList();
+
+                // Prepare  for response DTO
+                var orderResponse = new OrderResponseDto
+                {
+                    OrderId = order.Id,
+                    DealsId = order.DealsId,
+                    SalerManId = order.SalerManId,
+                    OrdersDate = order.OrdersDate,
+                    TotalSold = order.TotalSold,
+                    DiscountedAmount = order.DiscountedAmount,
+                    Discount = order.Discount,
+                    TotalAmount = order.TotalAmount,
+                    Products = products.Select(p => new ProductDto
+                    {
+                        Id = p.Id,
+                        ProductName = p.ProductName,
+                        ProductPricing = p.ProductPricing,
+                        Product_Type = p.Product_Type,
+                        ProductDetails = p.ProductDetails,
+                        ProductCreation = p.ProductCreation,
+                        ProductModification = p.ProductModification,
+                        BrandId = p.BrandId,
+
+                    }).ToList()
+                };
+
+                orderResponseList.Add(orderResponse);
+            }
+
+            return orderResponseList;
+        }
     }
 }
+       
+
+
+    
