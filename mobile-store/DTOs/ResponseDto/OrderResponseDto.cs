@@ -2,9 +2,17 @@
 
 namespace mobile_store.DTOs.ResponseDto
 {
-    public class OrderResponseDto
+    public class OrderResponseDto 
     {
-        public List<OrderDto> Orders { get; set; }
+        public int OrderId { get; set; }
+        public int? DealsId { get; set; }
+        public int? SalerManId { get; set; }
+        public DateOnly? OrdersDate { get; set; }
+        public int? TotalSold { get; set; }
+        public int? DiscountedAmount { get; set; }
+        public int? Discount { get; set; }
+        public int? TotalAmount { get; set; }
+        public List<ProductDto> Products { get; set; }
     }
 
     public class OrderDto
@@ -36,5 +44,24 @@ namespace mobile_store.DTOs.ResponseDto
         public int? TotalSold { get; set; }
 
         public List<Products> Product { get; set; }
+    }
+
+    public class ProductDto
+    {
+        public int Id { get; set; }
+        public string ProductName { get; set; }
+        public int? ProductPricing { get; set; }
+
+        public string Product_Type { get; set; }
+
+        public string ProductDetails { get; set; }
+
+        public DateOnly? ProductCreation {  get; set; }
+
+        public DateOnly? ProductModification { get; set; }
+
+        public int? BrandId { get; set; }
+
+
     }
 }
